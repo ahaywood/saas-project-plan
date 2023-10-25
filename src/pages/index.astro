@@ -1,4 +1,14 @@
 ---
+import '../tailwind.css';
+import Footer from "../components/Footer.astro";
+import Arrow from "../components/Icons/Arrow.astro";
+import TabbedContent from '../components/TabbedContent.svelte';
+
+import { getCollection } from 'astro:content';
+import Faq from '../components/Faq.svelte';
+import NewsletterForm from '../components/NewsletterForm.svelte';
+const allFaqs = await getCollection('faqs')
+
 ---
 
 <html lang="en">
@@ -7,9 +17,113 @@
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
+		<!-- TODO: Add OG Tags -->
+		<title>SaaS Project Plan: A Free Notion Template for Project Management</title>
 	</head>
 	<body>
-		<h1>Astro</h1>
+		<div class="fixed top-0 w-full bg-black center py-3 z-50 sticky-bar">
+			<a href="#get" class="button primary hover:!bg-white hover:!text-black">Get the Template</a>
+			<a href="#features" class="button inverted with-icon hover:text-tulipTree group/scrollBar"><span class="border-transparent group-hover/scrollBar:border-b-tulipTree border-b-2">View the Features</span> <Arrow /></a>
+		</div>
+
+		<main class="page-wrapper pt-[100px]">
+			<section class="text-center hero mb-28">
+				<h1 class="text-[72px] font-bold tracking-tight page-title">SaaS Project Plan</h1>
+				<h2 class="flex items-center justify-center font-light text-2xl gap-4 mb-[30px]"><span class="bg-[url(/images/circle.svg)] bg-no-repeat py-5 pl-4 pr-10 -mr-8">a free</span> <img src="/images/notion-logo.svg" alt="Notion" /> <span>Template</span></h2>
+				<div class="center gap-2 mb-16">
+					<a href="#get" class="button primary">Get the Template</a>
+					<a href="#features" class="button with-icon group/viewFeatures"><span class="border-transparent group-hover/viewFeatures:border-b-black border-b-2">View the Features</span> <Arrow /></a>
+				</div>
+				<img src="/images/screenshot.png" srcset="/images/screenshot@2x.png 2x, /images/screenshot.png" alt="Notion Template Screenshot" class="mx-auto" />
+			</section>
+
+			<!-- features -->
+			<section class="mb-32">
+				<h3>Features</h3>
+				<h2 class="mb-8">Streamline Your Project Planning</h2>
+				<div class="mb-12 page-grid">
+					<div class="box col-span-4 col-start-3">
+						<img src="/images/placeholder--screenshot--small.png" alt="" class="mb-8" />
+						<h4>Streamline Your Project Planning</h4>
+						This is something brilliant and copy that I haven’t written yet. I hate writing copy. I wish it would write itself.
+					</div>
+					<div class="box col-span-4">
+						<img src="/images/placeholder--screenshot--small.png" alt="" class="mb-8" />
+						<h4>Streamline Your Project Planning</h4>
+						This is something brilliant and copy that I haven’t written yet. I hate writing copy. I wish it would write itself.
+					</div>
+				</div>
+				<div class="text-center"><a href="#get" class="button primary">Get the Template for Free</a></div>
+			</section>
+
+			<section class="page-grid mb-32">
+				<div class="col-start-3 col-span-8">
+					<h3>Subheading</h3>
+					<h2 class="mb-6">Take Control of Your Life and Your Projects</h2>
+					<p>This is something brilliant and copy that I haven’t written yet. I hate writing copy. I wish it would write itself. Thank goodness for AI and ChatGPT and Notion AI and Jasper AI and all the AI.</p>
+				</div>
+			</section>
+
+			<!-- video -->
+			<section class="text-center mb-28">
+				<img src="/images/placeholder--video.jpg" alt="" class="mx-auto" />
+			</section>
+
+			<!-- tabbed content -->
+			<section class="page-grid mb-32">
+				<div class="col-start-3 col-span-8">
+				<h3>Features</h3>
+				<h2 class="mb-9">Everything, All in One Place</h2>
+				<TabbedContent client:only />
+				</div>
+			</section>
+
+			<!-- quote -->
+			<section class="text-center mb-[200px]">
+				<div class="text-[40px] font-bold tracking-tight leading-[64px] mb-5">"By failing to prepare, you are<br />preparing to fail."</div>
+				<div>-Benjamin Franklin</div>
+			</section>
+
+			<!-- about me -->
+			<section class="mb-32 page-grid">
+				<div class="col-span-4 flex justify-end items-end"><img src="/images/hands--left.png" srcset="/images/hands--left@2x.png 2x, /images/hands--left.png" alt="hands" /></div>
+				<div class="col-span-4 text-center">
+					<h3>About Me</h3>
+					<h2>Amy Dutton</h2>
+					<img src="/images/amy-dutton.png" alt="Amy Dutton" class="mx-auto relative my-6" />
+					<p>
+						This is something brilliant and copy that I haven’t written yet. I hate writing copy. I wish it would write itself. Thank goodness for AI and ChatGPT and Notion AI and Jasper AI and all the AI.
+					</p>
+				</div>
+				<div class="col-span-4 text-right self-end"><img src="/images/hands--right.png" srcset="/images/hands--right@2x.png 2x, /images/hands--right.png" alt="hands" class="relative -left-6 -bottom-16" /></div>
+			</section>
+
+			<!-- faqs -->
+			<section class="mb-32 page-grid">
+				<div class="col-span-8 col-start-3">
+					<h3>FAQs</h3>
+					<h2 class="mb-8">Here are the Most Frequently Asked Questions</h2>
+
+					{allFaqs.map((faq, index) => <Faq question={faq.data.question} answer={faq.body} isOpened={index === 0} client:only />)}
+
+					<img src="/images/speech-bubbles.png" srcset="/images/speech-bubbles@2x.png 2x, /images/speech-bubbles.png" alt="" class="mx-auto relative pt-8" />
+				</div>
+			</section>
+
+
+			<!-- form - call to action -->
+			<section id="get" class="mb-40 page-grid">
+				<div class="col-start-3 col-span-8">
+					<h2 class="mb-8">Get the Template for Free</h2>
+					<p class="mb-8 text-center">Where should I send the template and instructions on how to use it?</p>
+					<div>
+						<NewsletterForm client:only />
+					</div>
+				</div>
+			</section>
+
+			<!-- footer -->
+			<Footer />
+		</main>
 	</body>
 </html>

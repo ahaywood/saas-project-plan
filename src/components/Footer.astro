@@ -1,0 +1,21 @@
+---
+import { Constants } from "../Constants";
+import LinkedIn from "./Icons/LinkedIn.astro";
+import Twitter from "./Icons/Twitter.astro";
+const getCurrentYear = () => {
+  const date = new Date();
+  return date.getFullYear();
+}
+---
+<footer class="border-t-1 border-t-[#D3D2D2] flex justify-between leading-7 pt-6 pb-16">
+  <div>
+    <a href="/terms" class="hover:underline">Terms and Conditions</a> . <a href="/disclaimers" class="hover:underline">Disclaimers</a> . <a href="/privacy" class="hover:underline">Privacy Policy</a><br />
+    Copyright &copy; {getCurrentYear()}. <a href={Constants.AHHA} target="_blank" rel="noreferrer" class="underline hover:no-underline">Ah Ha Creative.</a> All Rights Reserved.
+  </div>
+  <div>
+    <ul class="flex items-center gap-10">
+      <li><a href={Constants.TWITTER} target="_blank" rel="noreferrer" class="text-lightGray hover:text-tulipTree"><Twitter /></a></li>
+      <li><a href={Constants.LINKEDIN} target="_blank" rel="noreferrer" class="text-lightGray hover:text-tulipTree"><LinkedIn /></a></li>
+    </ul>
+  </div>
+</footer>

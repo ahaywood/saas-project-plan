@@ -1,0 +1,111 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    @apply scroll-smooth
+  }
+
+  h2 {
+    @apply font-bold text-3xl tracking-tight leading-none text-center
+  }
+
+  h3 {
+    @apply uppercase tracking-widest text-sm font-light text-center
+  }
+
+  h3:has(+ h2) {
+    @apply mb-6
+  }
+
+  h4 {
+    @apply font-bold text-lg leading-none mb-3
+  }
+
+  p {
+    @apply leading-7
+  }
+
+  svg {
+    @apply fill-current;
+  }
+}
+
+@layer components {
+  .page-wrapper {
+    @apply max-w-[1290px] mx-auto relative
+  }
+
+  .page-title {
+    background: url('/images/title--left.svg') left top no-repeat,
+      url('images/title--right.svg') right top no-repeat;
+    @apply inline-block px-20
+  }
+
+  @keyframes scroll-down {
+    0% {
+      transform: translateY(-100%);
+    }
+    5% {
+      transform: translateY(-100%);
+    }
+    15% {
+      transform: translateY(0%);
+    }
+  }
+
+  .sticky-bar {
+    animation: scroll-down linear;
+    animation-timeline: scroll()
+  }
+
+  .tabbed-content .tab {
+    @apply relative flex items-end justify-center w-full h-[184px] rounded-3xl
+  }
+
+  .tabbed-content .content-box {
+    @apply rounded-3xl bg-whiteSmoke flex gap-11 col-span-4
+  }
+
+  .tabbed-content .content-box .content {
+    @apply py-16 px-14 flex flex-col
+  }
+
+  .tabbed-content .content-box .content .heading {
+    @apply font-bold text-3xl tracking-tight leading-none mb-8
+  }
+
+}
+
+@layer utilities {
+  .page-grid {
+    @apply grid grid-cols-12 gap-x-5
+  }
+
+  .center {
+    @apply flex items-center justify-center;
+  }
+
+  .button {
+    @apply text-lg leading-none font-bold tracking-tight py-3 px-7
+  }
+
+  .button.primary {
+    @apply rounded-lg bg-tulipTree text-black hover:bg-black hover:text-tulipTree
+  }
+
+  .button.inverted {
+    @apply text-white
+  }
+
+  .button.with-icon {
+    @apply flex items-center gap-1
+  }
+
+  .box {
+    @apply bg-whiteSmoke rounded-3xl p-8
+  }
+}
